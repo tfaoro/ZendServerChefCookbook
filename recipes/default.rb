@@ -69,6 +69,7 @@ end
 
 log "Starting install for package #{package_name}"
 package package_name do
+  timeout 1800
   :install
   notifies :run, 'bash[Copy zend server vhosts]', :immediate if node[:platform_family] == "rhel"
   notifies :create, 'ruby_block[replace apache reload command]', :immediately if node[:platform_family] == "rhel"
