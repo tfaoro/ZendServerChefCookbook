@@ -46,21 +46,21 @@ when "rhel"
   yum_repository "zend-server" do
     description "Zend Server repo"
     gpgkey "http://repos.zend.com/zend.key"
-    url "#{url}#{version}/#{basedirrpm}/$basearch"
+    baseurl "#{url}#{version}/#{basedirrpm}/$basearch"
     action :add
   end
 
   yum_repository "zend-server-noarch" do
     description "Zend Server repo"
     gpgkey "http://repos.zend.com/zend.key"
-    url "#{url}#{version}/#{basedirrpm}/noarch"
+    baseurl "#{url}#{version}/#{basedirrpm}/noarch"
       action :add
   end
 
   yum_repository "nginx" do
     description "Nginx repo"
     gpgkey "http://nginx.org/keys/nginx_signing.key"
-    url "http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].split('.')[0]}/$basearch/" 
+    baseurl "http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].split('.')[0]}/$basearch/" 
     only_if { node[:zendserver][:nginx] }
   end
 
